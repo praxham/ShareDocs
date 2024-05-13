@@ -27,9 +27,9 @@ input {
   font-size: 18px;
   text-decoration: none;
   background-image: url('./assets/drive.svg');
-  background-position: 96%;
+  background-position: 92%;
   background-repeat: no-repeat;
-  width: 50%;
+  width: 100%;
 }
 
 input::placeholder {
@@ -41,6 +41,7 @@ input::placeholder {
   flex-direction: column;
   gap: 16px;
   margin-bottom: 30px;
+  justify-content: flex-start !important;
 }
 
 .Heading {
@@ -56,6 +57,7 @@ input::placeholder {
   display: flex;
   flex-direction: row;
   gap: 16px;
+  justify-content: stretch;
 }
 
 .BottomContainer button {
@@ -73,5 +75,52 @@ input::placeholder {
   display: flex;
   justify-content: center;
   gap: 8px;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.BottomContainer button img {
+  width: 21px;
+}
+
+.BottomContainer button:empty {
   display: none;
+}
+
+.PDFCard {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  gap: 10px;
+  background-color: #141414;
+  border-radius: 15px;
+  justify-self: flex-start !important;
+  height: 250px;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.PDFTitle {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.CardUpperSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.PDFCard embed {
+  border-radius: 10px;
+  height: 100%;
+}
+
+embed {
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px;
+  border: none;
+  background-color: #14141400;
 }
