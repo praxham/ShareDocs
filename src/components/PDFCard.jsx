@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
+import Delete from './../assets/Delete.svg'
 
 const PDFCard = () => {
-  const PDFLink = JSON.parse(localStorage.getItem("PDF") || "[]");
-  
+  const [PDFLink, setPDFLink] = useState(JSON.parse(localStorage.getItem("PDF") || "[]"));
   const [titles, setTitles] = useState(Array(PDFLink.length).fill("...Loading"));
-
-  
 
   useEffect(() => {
     const fetchTitles = async () => {
@@ -31,11 +29,20 @@ const PDFCard = () => {
         }
       }
       setTitles(newTitles);
-      // console.log(titles);
     };
 
     fetchTitles();
   }, [PDFLink]);
+
+  const handleDelete = (index) => {
+    // Remove the item from the local storage
+    const updatedPDFLink = PDFLink.filter((_, i) => i !== index);
+    localStorage.setItem("PDF", JSON.stringify(updatedPDFLink));
+    
+    // Update the state
+    setPDFLink(updatedPDFLink);
+    setTitles(titles.filter((_, i) => i !== index));
+  };
 
   return (
     <>
@@ -48,10 +55,10 @@ const PDFCard = () => {
             <div className="flex flex-row justify-between items-center pb-2">
               <div className="text-wrap truncate">{titles[index]}</div>
               <img
-                // onClick={handlePopupVisibility}
+                onClick={() => handleDelete(index)}
                 className="w-6 ml-2 pointer-events-auto cursor-pointer"
-                src="src/assets/WAWhite.svg"
-                alt="Whatsapp Icon"
+                src={Delete}
+                alt="Delete Icon"
               />
             </div>
             <embed
@@ -62,14 +69,6 @@ const PDFCard = () => {
           </div>
         ))}
       </div>
-      {/* {popupVisibility && (
-        <ShareToWAPopup
-          handlePopupVisibility={handlePopupVisibility}
-          handlePhoneNumber={handlePhoneNumber}
-          phoneNumber={phoneNumber}
-          waLink={waLink}
-        />
-      )} */}
     </>
   );
 };
