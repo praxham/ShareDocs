@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import ShareToWAPopup from "./ShareToWAPopup";
+import driveicon from './../assets/driveicon.svg';
+import WABlack from './../assets/WABlack.svg'
 
 const ActionSection = () => {
   const PDFs = JSON.parse(localStorage.getItem("PDF") || "[]");
@@ -130,7 +132,7 @@ const ActionSection = () => {
               <a href="https://drive.google.com/drive/home">
                 <img
                   className="px-4 py-[19px] rounded-[10px] bg-black absolute top-[2px] right-[2px] pb-[1px]"
-                  src="src\assets\driveicon.svg"
+                  src={driveicon}
                   alt=""
                 />
               </a>
@@ -148,7 +150,7 @@ const ActionSection = () => {
               <a href="https://drive.google.com/drive/home">
                 <img
                   className="px-4 py-[19px] rounded-[10px] bg-black absolute top-[2px] right-[2px] pb-[1px]"
-                  src="src\assets\driveicon.svg"
+                  src={driveicon}
                   alt=""
                 />
               </a>
@@ -157,7 +159,7 @@ const ActionSection = () => {
           {PDFLink && (
             <button onClick={handlePopupVisibility} className="w-full flex flex-row justify-between items-center text-nowrap p-4 bg-white text-black rounded-[10px]">
               Share All to{" "}
-              <img className="h-[21px]" src="src\assets\WABlack.svg" alt="" />
+              <img className="h-[21px]" src={WABlack} alt="" />
             </button>
           )}
           {popupVisibility && (
