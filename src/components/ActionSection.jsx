@@ -147,7 +147,7 @@ const ActionSection = () => {
                 value={inputValue}
                 onChange={handleInputChange}
               />
-              <a href="https://drive.google.com/drive/home">
+              <a href="intent://drive.google.com/drive/home">
                 <img
                   className="px-4 py-[19px] rounded-[10px] bg-black absolute top-[2px] right-[2px] pb-[1px]"
                   src={driveicon}
