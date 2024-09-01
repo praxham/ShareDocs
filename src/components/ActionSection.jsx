@@ -109,11 +109,11 @@ const ActionSection = () => {
       )}
 
       <div className="w-full px-[30px] pb-[30px] pt-[16px] bg-black h-fit font-medium flex flex-col gap-4 fixed bottom-0">
-        {PDFLink && (
+        {/* {PDFLink && (
           <div className="text-center text-[12px] text-[#808080]">
             Double Tap to Delete Document Link
           </div>
-        )}
+        )} */}
         {!PDFLink && (
           <div className="text-[36px]">
             Store & Share PDF Documents With Ease
