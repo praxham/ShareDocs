@@ -1,6 +1,27 @@
 import React from "react";
 
-const ShareToWAPopup = ({handlePopupVisibility, phoneNumber, handlePhoneNumber, waLink}) => {
+const ShareToWAPopup = ({handlePopupVisibility, phoneNumber, handlePhoneNumber, waLink, message}) => {
+console.log(message);
+  const handleShare = async () => {
+    const shareData = {
+      title: "Shared File URLs",
+      text: message, 
+    };
+  
+    if (navigator.share) {
+      // Use the Web Share API if available
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        console.error("Error sharing:", err);
+      }
+    } else {
+      // Fallback for devices/browsers that don't support Web Share API
+      navigator.clipboard.writeText(message).then(() => {
+        alert("File URLs copied to clipboard! You can share it manually.");
+      });
+    }
+  };
   return (
     <>
       <div
@@ -30,8 +51,14 @@ const ShareToWAPopup = ({handlePopupVisibility, phoneNumber, handlePhoneNumber, 
           href={waLink}
           className="text-black bg-white p-4 rounded-[10px] text-center"
         >
-          Send PDFs to {phoneNumber || "..."}
+          Send PDFs to {phoneNumber || "..."} on WA
         </a>
+        <button
+        onClick={()=>handleShare()}
+          className="text-white bg-black p-4 -mt-2 rounded-[10px] text-center"
+        >
+          Share
+        </button>
       </div>
     </>
   );

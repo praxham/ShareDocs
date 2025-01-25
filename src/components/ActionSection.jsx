@@ -12,6 +12,7 @@ const ActionSection = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [waLink, setWALink] = useState("");
   const [popupVisibility, setPopupVisibility] = useState(false);
+  const [message, setMessage] = useState('')
 
   const handlegDrivePopup = () => {
     setgDrivePopup(!gDrivePopup);
@@ -21,10 +22,13 @@ const ActionSection = () => {
     setPopupVisibility(!popupVisibility);
   };
 
+  useEffect(()=>{
+    setMessage(PDFs.map((link, index) => `${titles[index] || "Untitled"}: ${link.PDFLink}`).join('\n'));
+  },[PDFs, titles])
+
   const handlePhoneNumber = (e) => {
     setPhoneNumber(e.target.value);
     if (titles.length === PDFs.length) { // Ensure all titles are loaded
-      const message = PDFs.map((link, index) => `${titles[index] || "Untitled"}: ${link.PDFLink}`).join('\n');
       setWALink("https://wa.me/" + e.target.value + "?text=" + encodeURIComponent(message));
     }
   };
@@ -157,9 +161,9 @@ const ActionSection = () => {
             </div>
           )}
           {PDFLink && (
-            <button onClick={handlePopupVisibility} className="w-full flex flex-row justify-between items-center text-nowrap p-4 bg-white text-black rounded-[10px]">
-              Share All to{" "}
-              <img className="h-[21px]" src={WABlack} alt="" />
+            <button onClick={handlePopupVisibility} className="w-full flex flex-row font-medium justify-center items-center text-nowrap p-4 bg-white text-black rounded-[10px]">
+              Share Files
+              {/* <img className="h-[21px]" src={WABlack} alt="" /> */}
             </button>
           )}
           {popupVisibility && (
@@ -168,6 +172,7 @@ const ActionSection = () => {
               handlePhoneNumber={handlePhoneNumber}
               phoneNumber={phoneNumber}
               waLink={waLink}
+              message={message}
             />
           )}
         </div>

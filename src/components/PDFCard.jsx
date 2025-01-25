@@ -53,10 +53,10 @@ const PDFCard = () => {
             className="rounded-[15px] mx-[30px] mt-[30px] bg-[#141414] p-2"
           >
             <div className="flex flex-row justify-between items-center pb-2">
-              <div className="text-wrap truncate">{titles[index]}</div>
+              <div className="text-wrap line-clamp-1">{titles[index]}</div>
               <img
                 onClick={() => handleDelete(index)}
-                className="w-6 ml-2 pointer-events-auto cursor-pointer"
+                className="w-4 ml-4 mr-2 pointer-events-auto cursor-pointer"
                 src={Delete}
                 alt="Delete Icon"
               />
